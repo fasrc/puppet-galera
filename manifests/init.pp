@@ -247,9 +247,9 @@ class galera(
     # needs to be bootstrapped. This happens before the service is managed
     $server_list = join($galera_servers, ' ')
 
-    package { 'nmap':
+    ensure_packages( 'nmap', {
       ensure => $package_ensure
-    } ->
+    }) ->
 
     exec { 'bootstrap_galera_cluster':
       command  => $galera::params::bootstrap_command,
